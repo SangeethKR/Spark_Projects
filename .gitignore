@@ -4,6 +4,7 @@
 *.iws
 *.jar
 .idea
+.bsp
 out
 **/null/**
 **/target/**
