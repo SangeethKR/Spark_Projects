@@ -8,10 +8,29 @@ object Sparkbasics {
 
   def main(args: Array[String]): Unit = {
     System.setProperty("hadoop.bin.dir", "C:\\winutils\\")
+    /*creating spark session object to submit all the spark related apis*/
     val spark = SparkSession.builder().master("local[*]").appName("sparkbasics").getOrCreate()
-    val inputdf = spark.read.format("csv")
+
+    /*Reading a csv file to Dataframe with default Reading mode(PERMISSIVE) */
+    val readpermissivedf = spark.read.format("csv")
                             .option("header", "true")
+                            .option("mode", "PERMISSIVE")
                             .load("src/inputs/input.csv")
-    inputdf.show()
+    readpermissivedf.show()
+
+    /*Reading Data with read mode(DROPMALFORMED), which remove the corrupt data*/
+    val dropmalformeddf = spark.read.format("csv")
+                               .option("header", "true")
+                               .option("mode", "DROPMALFORMED")
+                               .load("src/inputs/input.csv")
+    dropmalformeddf.show()
+
+    /*Reading Data with read mode(FAILFAST), which throw exception
+     if any corrupt data present*/
+    val failfastdf = spark.read.format("csv")
+      .option("header", "true")
+      .option("mode", "FAILFAST")
+      .load("src/inputs/input.csv")
+    failfastdf.show()
   }
 }
