@@ -7,9 +7,9 @@ import java.util.Properties
 object Sparkbasics {
 
   def main(args: Array[String]): Unit = {
-    System.setProperty("hadoop.bin.dir", "C:\\winutils\\")
-    /*creating spark session object to submit all the spark related apis*/
-    val spark = SparkSession.builder().master("local[*]").appName("sparkbasics").getOrCreate()
+
+    /*creating spark session object */
+    val spark = UtilFunction.sparkSessionObjectCreate("Sparkbasics")
 
     /*Reading a csv file to Dataframe with default Reading mode(PERMISSIVE) */
     val readpermissivedf = spark.read.format("csv")

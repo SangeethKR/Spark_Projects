@@ -8,11 +8,11 @@ import javax.swing.DefaultRowSorter.Row
 object Multidelimcsvread {
 
   def main(args: Array[String]): Unit = {
-    System.setProperty("hadoop.bin.dir", "C:\\winutils\\")
-    /*creating spark session object to submit all the spark related apis*/
-    val spark = SparkSession.builder().master("local[*]").appName("sparkbasics").getOrCreate()
 
-  import spark.implicits._
+    /*creating spark session object*/
+    val spark = UtilFunction.sparkSessionObjectCreate("Multidelimcsvread")
+
+    import spark.implicits._
 
     /*Older method(Apply in Spark 2.x)*/
 
