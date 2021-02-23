@@ -15,7 +15,7 @@ object ExplodeFunction {
                          .option("header", true)
                          .csv("src/inputs/explodeinput1.csv")
 
-    /*
+
     /*normal explode function(empty and null values are not considered)*/
     val normal_explode_df = indf.withColumn("courses", explode(split($"courses", ",")))
     normal_explode_df.show()
@@ -23,7 +23,7 @@ object ExplodeFunction {
     /*explode_outer(empty and null values also are considered.)*/
     val explode_outer_df = indf.withColumn("courses", explode_outer(split($"courses", ",")))
     explode_outer_df.show()
-    */
+
 
     /*posexplode function(give index to the values in the array)*/
     val posexplode_df = indf.select( posexplode(split($"courses", ",")))
